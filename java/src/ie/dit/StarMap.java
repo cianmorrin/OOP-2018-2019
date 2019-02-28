@@ -50,7 +50,6 @@ public class StarMap extends PApplet
         }
     }
 
-<<<<<<< HEAD
     float border = 50;
 
     public void drawGrid()
@@ -76,30 +75,6 @@ public class StarMap extends PApplet
     {
         textAlign(LEFT, CENTER);
 
-=======
-    float border;
-
-    private void drawGrid()
-    {
-        textAlign(CENTER, CENTER);
-        for(int i = -5 ; i <= 5 ; i ++)
-        {
-            float x = map(i, -5, 5, border, width - border);
-            stroke(0, 0, 255);
-            line(x, border, x, height - border);
-            fill(255);
-            text(i, x, border / 2);
-            stroke(0, 0, 255);
-            line(border, x, width - border, x);
-            fill(255);            
-            text(i, border / 2, x);
-        }
-    }
-
-    public void drawStars()
-    {
-        textAlign(LEFT, CENTER);
->>>>>>> 2463b2be8917749d4f351bb20f410a3ba554f29c
         for(Star s:stars)
         {
             float x = map(s.getxG(), -5, 5, border, width - border);
@@ -107,7 +82,6 @@ public class StarMap extends PApplet
 
             stroke(255, 255, 0);
             noFill();
-<<<<<<< HEAD
             ellipse(x,y, s.getAbsMag(),s.getAbsMag());
 
             stroke(0, 255, 255);
@@ -121,34 +95,11 @@ public class StarMap extends PApplet
 
 
     public void draw(){
-=======
-            ellipse(x, y, s.getAbsMag(), s.getAbsMag());
-
-            stroke(0, 255, 255);
-            line(x, y - 5, x, y + 5);
-            line(x - 5, y, x + 5, y);
-            fill(255);
-            text(s.getDisplayName(), x + 20, y);
-            
-            
-
-        }
-    } 
-
-    public void mousePressed()
-    {
-        //mouseX, mouseY;    
-    }
-
-    public void draw()
-    {
->>>>>>> 2463b2be8917749d4f351bb20f410a3ba554f29c
         background(0);
         drawGrid();
         drawStars();
     }
 
-<<<<<<< HEAD
 
 
 
@@ -156,8 +107,6 @@ public class StarMap extends PApplet
 
 
     //ANGLE BRACKETS HOLD GENERIC TYPE
-=======
->>>>>>> 2463b2be8917749d4f351bb20f410a3ba554f29c
     private ArrayList<Star> stars = new ArrayList<Star>();
 
 }
