@@ -10,7 +10,7 @@ public class StarMap extends PApplet
 {
     public void settings()
     {
-        size(500, 500);
+        size(800, 800);
     }
 
     public void setup()
@@ -93,11 +93,67 @@ public class StarMap extends PApplet
         }
     }
 
+    // MINUS 1 TO SAY NOTHING HAS BEEN SELECTED
+    int selected1 = -1;
+    int selected2 = -1;
+
+    public void mouseClicked()
+    {
+        for(int i = 0 ; i < stars.size() ; i ++)
+        {
+            Star s = stars.get(i);
+            float x = map(s.getxG(), -5, 5, border, width - border);
+            float y = map(s.getyG(), -5, 5, border, height - border);
+            
+            if (dist(mouseX, mouseY, x, y) < s.getAbsMag() / 2)
+            {
+            if (selected1 == -1) //nothing selected
+            {
+                selected1 = i;
+                break;
+            }
+            else if (selected2 == -1)
+            {
+                selected2 = i;
+            }
+            else
+            {
+                selected1 = i;
+                selected2 = -1;
+            }           
+            }
+        }  
+    }
+
 
     public void draw(){
         background(0);
         drawGrid();
         drawStars();
+
+        // If I have selected one of the stars
+  if (selected1 != -1 && selected2 == -1)
+  {
+    Star star1 = stars.get(selected1);
+    stroke(255, 255, 0);
+    line(star1.getxG(), star1.getyG(), mouseX, mouseY);
+  }
+  else if (selected1 != -1 && selected2 != -1)
+  {
+    Star star1 = stars.get(selected1);
+    Star star2 = stars.get(selected2);
+    stroke(255, 255, 0);
+    line(star1.getxG(), star1.getyG(), star2.getxG(), star2.getyG());    
+    fill(255);
+    float dist = dist(star1.pos.x, star1.pos.y, star1.pos.z, star2.pos.x, star2.pos.y, star2.pos.z);
+    text("Distance from " + star1.displayName + " to " + star2.displayName + " is " + dist + " parsecs", border, height - 25);
+  }
+  
+  // If I have selected both of the stars
+  
+        
+
+
     }
 
 
