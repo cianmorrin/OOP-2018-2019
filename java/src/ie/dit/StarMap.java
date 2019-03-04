@@ -8,6 +8,10 @@ import processing.data.TableRow;
 
 public class StarMap extends PApplet
 {
+
+    int selected1 = -1;
+    int selected2 = -1;
+
     public void settings()
     {
         size(800, 800);
