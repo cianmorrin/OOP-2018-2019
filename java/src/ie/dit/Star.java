@@ -96,7 +96,6 @@ public class Star
         return displayName + "\t" + hab + "\t" + xG + "\t" + yG + "\t" + zG + "\t" + absMag;  
     }
 
-    //constructor . takes a table row
     public Star(TableRow row)
     {
         displayName = row.getString("Display Name");
