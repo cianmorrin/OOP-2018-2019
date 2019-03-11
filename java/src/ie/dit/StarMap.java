@@ -94,9 +94,17 @@ public class StarMap extends PApplet
         }
     } 
 
+    private float map1(float a, float b, float c, float d, float e)
+    {
+        float range1 = c - b;
+        float howFar = a - b;
+        float range2 = e - d;
+        return d + (howFar / range1) * range2;
+    }
+
     public void mouseClicked()
     {
-            
+        
     }
 
     public void draw()
