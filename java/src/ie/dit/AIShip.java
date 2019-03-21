@@ -1,8 +1,10 @@
 package ie.dit;
 
+import java.util.ArrayList;
+
 import processing.core.PVector;
 
-public class Ship
+public class AIShip
 {
     private PVector pos;
     private PVector forward;
@@ -12,7 +14,9 @@ public class Ship
 
     private float rotation;
 
-    public Ship(YASC yasc, float x, float y, float speed, float size)
+    private ArrayList<PVector> waypoints = new ArrayList<PVector>(); 
+
+    public AIShip(YASC yasc, float x, float y, float speed, float size)
     {
         this.yasc = yasc;
         pos = new PVector(x, y);
@@ -20,6 +24,10 @@ public class Ship
         this.speed = speed;
         this.size = size;
 
+        for(int i = 0 ; i < 5 ; i ++)
+        {
+            waypoints.add(new PVector(yasc.random(0, yasc.width), yasc.random(0, yasc.height)));
+        }
     }
 
     public void render()
@@ -27,9 +35,8 @@ public class Ship
         yasc.pushMatrix();
         yasc.translate(pos.x, pos.y);
         yasc.rotate(rotation);
-        
+        yasc.stroke(0, 0, 255);
         float halfSize = size / 2;
-        yasc.stroke(0);
         yasc.line(- halfSize, halfSize, 0, - halfSize);
         yasc.line(0, - halfSize
         , halfSize, halfSize);
@@ -38,32 +45,26 @@ public class Ship
             ,0, 0);
         yasc.line(0, 0, -halfSize, halfSize);
         yasc.popMatrix();
+
+        for(int i = 1 ; i <= waypoints.size() ; i ++)
+        {
+            PVector a = waypoints.get(i - 1);
+            PVector b = waypoints.get(i % waypoints.size());
+            yasc.line(a.x, a.y, b.x, b.y);
+        }
     }
+
+    int current = 0;
 
     public void update()
     {
-        forward.x = (float) Math.sin(rotation);
-        forward.y = - (float) Math.cos(rotation);
-        if (yasc.checkKey('w'))
+        PVector toNext = PVector.sub(waypoints.get(current), pos);
+        float dist = toNext.mag();
+        toNext.normalize();
+        pos.add(toNext);
+        if (dist < 1)
         {
-            pos.x += forward.x;
-            pos.y += forward.y;
-        }
-
-        if (yasc.checkKey('s'))
-        {
-            pos.x -= forward.x;
-            pos.y -= forward.y;
-        }
-
-        if (yasc.checkKey('a'))
-        {
-            rotation -= 0.1f;
-        }
-
-        if (yasc.checkKey('d'))
-        {
-            rotation += 0.1f;
+            current = (current + 1) % waypoints.size();
         }
     }
 
