@@ -111,19 +111,6 @@ public class StarMap extends PApplet {
         for (int i = 0; i < stars.size(); i++) {
             Star s = stars.get(i);
 
-<<<<<<< HEAD
-    private float map1(float a, float b, float c, float d, float e)
-    {
-        float range1 = c - b;
-        float howFar = a - b;
-        float range2 = e - d;
-        return d + (howFar / range1) * range2;
-    }
-
-    public void mouseClicked()
-    {
-        
-=======
             float x = map(s.getxG(), -5, 5, border, width - border);
             float y = map(s.getyG(), -5, 5, border, height - border);
 
@@ -138,7 +125,6 @@ public class StarMap extends PApplet {
                 }
             }
         }
->>>>>>> 5222c2b2cb02421e630edcdcd8e305863f2ffd80
     }
 
     public void draw() {

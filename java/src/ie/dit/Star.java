@@ -106,13 +106,9 @@ public class Star
         absMag = row.getFloat("AbsMag");
     }
 
-<<<<<<< HEAD
-}
-=======
     public Star()
     {
         
     }
 
 }
->>>>>>> 5222c2b2cb02421e630edcdcd8e305863f2ffd80
