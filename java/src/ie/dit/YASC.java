@@ -48,12 +48,8 @@ public class YASC extends PApplet
         s.render();
         s.update();
 
-<<<<<<< HEAD
         a.update();
         a.render();
-=======
-        aiShip.update();
-        aiShip.render();
 
         fill(0);
         text("Bullets: " + bullets.size(), 50, 100);
@@ -62,7 +58,6 @@ public class YASC extends PApplet
             b.render();
             b.update();
         }
->>>>>>> 3a85ce3eead787a1ed78d1656419d0fd8a29efee
     }
 
 
